@@ -18,9 +18,16 @@ jobs:
             - name: Create file
               run:  |
                  touch github-action.txt
-                 la -la
+                 echo from demo pipeline ,first job > github-action.txt
+                 ls -la
                  echo "Hello World!"
                  cat README.md 
+            
+            - name:  upload artifact
+              uses: actions/upload-artifact@v4  
+              with:
+                  name: file-artifact
+                  path: github-action.txt   
             
 
               
@@ -29,10 +36,15 @@ jobs:
         needs: 
             - setup-job
 
-        runs-on: windows-latest
+        runs-on: ubuntu-latest
         steps:
-            - name: displayhello world
+            - name: display hello world
               run: echo "Hello from windows"
+            
+            - name: download artifact
+              uses: actions/download-artifact@v4
+              with:
+                    name: file-artifact
             
             - name: display github-action file
               run: cat github-action.txt
