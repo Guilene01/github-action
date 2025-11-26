@@ -1,0 +1,36 @@
+name: Demo pipeline
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches: [main, dev]
+    
+jobs:
+    setup-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Create file
+              run: touch github-action.txt
+            
+            - name: print hello world
+              run: echo "Hello World!"
+            
+            - name: display readme file
+              run: cat README.md  
+              
+    
+    builds-job:
+        runs-on: windows-latest
+        steps:
+            - name: displayhello world
+              run: echo "Hello from windows"
+              
+            
+    deploy-job:
+        runs-on: macos-latest
+        steps:
+            - name: display hello world
+              run: echo "Hello from mac"       
+      
