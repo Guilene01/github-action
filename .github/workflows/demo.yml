@@ -26,7 +26,10 @@ jobs:
               
     
     builds-job:
-        needs: setup-job
+        needs: 
+            - deploy-job
+            - setup-job
+
         runs-on: windows-latest
         steps:
             - name: displayhello world
