@@ -14,7 +14,7 @@ jobs:
 
             - name: Checkout code
               uses: actions/checkout@v3
-              
+
             - name: Create file
               run: touch github-action.txt
             
@@ -26,6 +26,7 @@ jobs:
               
     
     builds-job:
+        needs: setup-job
         runs-on: windows-latest
         steps:
             - name: displayhello world
